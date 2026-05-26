@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://127.0.0.1:5000/predict -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Car Price Prediction</title>
+
+    <link rel="stylesheet" href="./Car Price Prediction_op_3_files/style.css">
+
+    <script>
+
+        const brandModels = {"Audi": ["A4", "A6", "Q5", "Q7"], "BMW": ["X5", "3 Series", "5 Series"], "Ford": ["Mustang", "Explorer", "F-150"], "Honda": ["Civic", "Accord", "CR-V"], "Mercedes": ["C-Class", "E-Class", "GLA"], "Tesla": ["Model S", "Model 3", "Model X", "Model Y"], "Toyota": ["Corolla", "Camry", "Fortuner"]};
+
+        function updateModels() {
+
+            const brand = document.getElementById("brand").value;
+
+            const modelDropdown = document.getElementById("model");
+
+            modelDropdown.innerHTML = "";
+
+            brandModels[brand].forEach(function(model){
+
+                let option = document.createElement("option");
+
+                option.value = model;
+
+                option.text = model;
+
+                modelDropdown.appendChild(option);
+
+            });
+
+        }
+
+        function selectBrand(brandName){
+
+            document.getElementById("brand").value = brandName;
+
+            updateModels();
+
+        }
+
+        window.onload = function(){
+
+            updateModels();
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Logo -->
+
+        <div class="logo-section">
+
+            <img src="./Car Price Prediction_op_3_files/vt logo 1.png" class="logo">
+                 <p> Vihara Tech Institute</p>
+
+        </div>
+
+        <!-- Title -->
+
+        <h1 class="title">Car Price Prediction </h1>
+
+        <form action="http://127.0.0.1:5000/predict" method="POST">
+
+            <!-- Brand Section -->
+
+            <div class="brand-container">
+
+                <h2>Select Brand</h2>
+
+                <div class="brand-grid">
+
+                    <div class="brand-card" onclick="selectBrand(&#39;Tesla&#39;)">
+
+                        <img src="./Car Price Prediction_op_3_files/tesla.jpg">
+
+                        <p>Tesla</p>
+
+                    </div>
+
+                    <div class="brand-card" onclick="selectBrand(&#39;Audi&#39;)">
+
+                        <img src="./Car Price Prediction_op_3_files/audi.jpg">
+
+                        <p>Audi</p>
+
+                    </div>
+
+                    <div class="brand-card" onclick="selectBrand(&#39;BMW&#39;)">
+
+                        <img src="./Car Price Prediction_op_3_files/bmw.jpg">
+
+                        <p>BMW</p>
+
+                    </div>
+
+                    <div class="brand-card" onclick="selectBrand(&#39;Ford&#39;)">
+
+                        <img src="./Car Price Prediction_op_3_files/ford.jpg">
+
+                        <p>Ford</p>
+
+                    </div>
+
+                    <div class="brand-card" onclick="selectBrand(&#39;Honda&#39;)">
+
+                        <img src="./Car Price Prediction_op_3_files/honda.jpg">
+
+                        <p>Honda</p>
+
+                    </div>
+
+                    <div class="brand-card" onclick="selectBrand(&#39;Mercedes&#39;)">
+
+                        <img src="./Car Price Prediction_op_3_files/mercedes.jpg">
+
+                        <p>Mercedes</p>
+
+                    </div>
+
+                    <div class="brand-card" onclick="selectBrand(&#39;Toyota&#39;)">
+
+                        <img src="./Car Price Prediction_op_3_files/toyota.jpg">
+
+                        <p>Toyota</p>
+
+                    </div>
+
+                </div>
+
+                <select name="brand" id="brand" onchange="updateModels()">
+
+                    <option value="Tesla">Tesla</option>
+                    <option value="Audi">Audi</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Mercedes">Mercedes</option>
+                    <option value="Toyota">Toyota</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Input Fields -->
+
+            <div class="input-grid">
+
+                <div class="input-box">
+
+                    <label>Model</label>
+
+                    <select name="model" id="model"><option value="Model S">Model S</option><option value="Model 3">Model 3</option><option value="Model X">Model X</option><option value="Model Y">Model Y</option></select>
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Year</label>
+
+                    <input type="number" name="year" placeholder="Enter Year">
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Engine Size</label>
+
+                    <input type="number" name="engine_size" placeholder="Engine Size">
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Fuel Type</label>
+
+                    <select name="fuel">
+
+                        <option>Petrol</option>
+                        <option>Diesel</option>
+                        <option>Electric</option>
+                        <option>Hybrid</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Transmission</label>
+
+                    <select name="transmission">
+
+                        <option>Manual</option>
+                        <option>Automatic</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Mileage</label>
+
+                    <input type="number" name="mileage" placeholder="Enter Mileage">
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>Condition</label>
+
+                    <select name="condition">
+
+                        <option>New</option>
+                        <option>Used</option>
+                        <option>Like New</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Button -->
+
+            <div class="button-section">
+
+                <button type="submit">
+
+                    Price Prediction
+
+                </button>
+
+            </div>
+
+
+            <!-- Prediction -->
+
+            <div class="prediction">
+
+                Predicted Price : 115460.5
+
+            </div>
+
+        </form>
+
+
+        <!-- Footer -->
+
+        <div class="footer">
+
+            <img src="./Car Price Prediction_op_3_files/Ramya.jpg" class="profile">
+
+            <h2>Kammari Ramya</h2>
+
+            <p>Data Science Student</p>
+
+        </div>
+
+    </div>
+
+
+
+</body></html>
